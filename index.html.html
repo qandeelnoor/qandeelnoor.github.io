@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qandeel Noor — Physics Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --paper: #f5f0e8;
+    --cream: #ece6d8;
+    --accent: #8b4513;
+    --accent2: #c0773a;
+    --muted: #6b6255;
+    --border: #d4c9b5;
+    --highlight: #e8d5b7;
+    --white: #fff9f0;
+    --green: #2d5a27;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 56px;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem;
+    overflow: hidden;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(139,69,19,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,69,19,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-atom {
+    position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+    width: 280px; height: 280px;
+    animation: rotateSlow 20s linear infinite;
+  }
+  .atom-nucleus {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 40px; height: 40px;
+    background: radial-gradient(circle, var(--accent2), var(--accent));
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(192,119,58,0.6);
+  }
+  .atom-orbit {
+    position: absolute; top: 50%; left: 50%;
+    border-radius: 50%;
+    border: 1px solid rgba(192,119,58,0.35);
+    transform-origin: center;
+  }
+  .orbit-1 { width: 120px; height: 120px; margin: -60px 0 0 -60px; transform: rotate(0deg); }
+  .orbit-2 { width: 180px; height: 90px; margin: -45px 0 0 -90px; transform: rotate(60deg); }
+  .orbit-3 { width: 180px; height: 90px; margin: -45px 0 0 -90px; transform: rotate(120deg); }
+  .atom-electron {
+    position: absolute; top: -5px; left: 50%; margin-left: -5px;
+    width: 10px; height: 10px;
+    background: var(--accent2);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent2);
+  }
+  @keyframes rotateSlow { from { transform: translateX(-50%) rotate(0deg); } to { transform: translateX(-50%) rotate(360deg); } }
+
+  .hero-name {
+    position: relative; z-index: 2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 0.95;
+    color: var(--white);
+    font-weight: 300;
+  }
+  .hero-name em { color: var(--accent2); font-style: italic; }
+  .hero-tagline {
+    position: relative; z-index: 2;
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+  }
+  .hero-badges {
+    position: relative; z-index: 2;
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .badge {
+    background: rgba(139,69,19,0.25);
+    border: 1px solid rgba(192,119,58,0.4);
+    color: var(--accent2);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .hero-right {
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem;
+  }
+  .hero-intro-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+    line-height: 1.65;
+    color: var(--ink);
+    font-weight: 300;
+  }
+  .hero-intro strong { font-weight: 600; color: var(--accent); }
+  .hero-contact-bar {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .contact-icon { color: var(--accent); font-size: 0.9rem; }
+
+  /* ─── SECTIONS ────────────────────────── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 3rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* ─── RESEARCH INTERESTS ──────────────── */
+  .interests-section { background: var(--white); }
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+  .interest-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .interest-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--accent);
+    transition: height 0.4s;
+  }
+  .interest-card:hover { background: var(--highlight); }
+  .interest-card:hover::before { height: 100%; }
+  .interest-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .interest-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+  .interest-desc {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ─── PUBLICATIONS ────────────────────── */
+  .pubs-section { background: var(--ink); }
+  .pubs-section .section-label { color: var(--accent2); }
+  .pubs-section .section-title { color: var(--white); }
+  .pub-list { display: flex; flex-direction: column; gap: 0; }
+  .pub-item {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .pub-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .pub-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent2);
+    padding-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .pub-body {}
+  .pub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+  }
+  .pub-authors {
+    font-size: 0.78rem;
+    color: rgba(245,240,232,0.45);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .pub-meta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .pub-journal {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: rgba(245,240,232,0.5);
+  }
+  .pub-if {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    background: rgba(139,69,19,0.3);
+    border: 1px solid rgba(192,119,58,0.4);
+    color: var(--accent2);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .pub-role {
+    font-size: 0.65rem;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    padding-top: 0.3rem;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .role-highlight { color: var(--accent2); }
+
+  /* ─── RESEARCH PROPOSAL ───────────────── */
+  .proposal-section { background: var(--cream); }
+  .proposal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .proposal-visual {
+    background: var(--ink);
+    border-radius: 2px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .proposal-visual-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(139,69,19,0.15), transparent 60%);
+  }
+  .cvd-diagram {
+    position: relative; z-index: 1;
+  }
+  .cvd-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 2rem;
+  }
+  .cvd-flow {
+    display: flex; align-items: center; gap: 0; justify-content: space-between;
+  }
+  .cvd-box {
+    background: rgba(192,119,58,0.12);
+    border: 1px solid rgba(192,119,58,0.35);
+    padding: 1rem 0.75rem;
+    text-align: center;
+    flex: 1;
+  }
+  .cvd-box-icon { font-size: 1.4rem; display: block; margin-bottom: 0.4rem; }
+  .cvd-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: rgba(245,240,232,0.65);
+    letter-spacing: 0.04em;
+  }
+  .cvd-arrow {
+    width: 30px; text-align: center;
+    color: rgba(192,119,58,0.5); font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .material-chips {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+  }
+  .mat-chip {
+    background: rgba(245,240,232,0.05);
+    border: 1px solid rgba(192,119,58,0.3);
+    color: rgba(245,240,232,0.7);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 0.3rem 0.6rem;
+    letter-spacing: 0.04em;
+  }
+  .proposal-content {}
+  .proposal-abstract {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .technique-list { list-style: none; }
+  .technique-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .technique-item::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── EXPERIENCE ──────────────────────── */
+  .exp-section { background: var(--white); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2rem; top: 0.45rem;
+    width: 10px; height: 10px;
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    transform: translateX(-4px);
+  }
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .timeline-org {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .timeline-points { list-style: none; }
+  .timeline-points li {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--muted);
+    padding: 0.2rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .timeline-points li::before {
+    content: '·';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  /* ─── PROJECTS ────────────────────────── */
+  .projects-section { background: var(--cream); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+  }
+  .project-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .project-card:hover { background: var(--highlight); }
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 0.8rem;
+  }
+  .project-desc {
+    font-size: 0.82rem;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .project-stats {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .stat-chip {
+    background: rgba(139,69,19,0.1);
+    border: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.05em;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.1rem;
+    transition: opacity 0.2s;
+  }
+  .project-link:hover { opacity: 0.65; }
+
+  /* ─── SKILLS ──────────────────────────── */
+  .skills-section { background: var(--ink); }
+  .skills-section .section-label { color: var(--accent2); }
+  .skills-section .section-title { color: var(--white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(192,119,58,0.3);
+  }
+  .skill-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .skill-name {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.75);
+  }
+  .skill-bar {
+    width: 50px; height: 2px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: var(--accent2);
+    border-radius: 1px;
+  }
+
+  /* ─── CERTIFICATIONS ──────────────────── */
+  .certs-section { background: var(--paper); }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .cert-card {
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .cert-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .cert-card:hover::after { transform: scaleX(1); }
+  .cert-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .cert-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+  .cert-org {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ─── FOOTER ──────────────────────────── */
+  footer {
+    background: var(--ink);
+    padding: 3rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .footer-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.35);
+  }
+  .footer-links {
+    display: flex; justify-content: center; gap: 2rem;
+    margin-top: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent2); }
+
+  /* ─── ANIMATIONS ──────────────────────── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 60vh; }
+    .interests-grid { grid-template-columns: 1fr 1fr; }
+    .proposal-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .certs-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+  }
+  @media (max-width: 600px) {
+    .interests-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .pub-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .container { padding: 0 1.5rem; }
+    .hero-left, .hero-right { padding: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Qandeel Noor</span>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#proposal">Proposal</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-atom">
+      <div class="atom-nucleus"></div>
+      <div class="atom-orbit orbit-1"><div class="atom-electron"></div></div>
+      <div class="atom-orbit orbit-2"><div class="atom-electron"></div></div>
+      <div class="atom-orbit orbit-3"><div class="atom-electron"></div></div>
+    </div>
+    <h1 class="hero-name">Qandeel<br><em>Noor</em></h1>
+    <p class="hero-tagline">Physics Researcher · 2D Materials · Optoelectronics</p>
+    <div class="hero-badges">
+      <span class="badge">MXene</span>
+      <span class="badge">Graphene</span>
+      <span class="badge">TMDs</span>
+      <span class="badge">CVD</span>
+      <span class="badge">Spintronics</span>
+      <span class="badge">Quantum Computing</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-intro-label">About Me</p>
+    <p class="hero-intro">
+      Physics graduate from <strong>NUST, Islamabad</strong> with hands-on expertise in the synthesis and characterization of <strong>two-dimensional materials</strong> — from MXene spintronics to CVD-grown graphene quantum Hall devices. I combine experimental rigor with emerging computational tools including <strong>machine learning and quantum algorithms</strong> to advance 2D materials science.
+    </p>
+    <div class="hero-contact-bar">
+      <div class="contact-item"><span class="contact-icon">✉</span> qandeelnoor80@gmail.com</div>
+      <div class="contact-item"><span class="contact-icon">📍</span> Islamabad, Pakistan</div>
+      <div class="contact-item"><span class="contact-icon">🎓</span> B.Sc. Physics — NUST (2019)</div>
+      <div class="contact-item"><span class="contact-icon">🔬</span> Lab Engineer, USPCAS-E, NUST (2024–2025)</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH INTERESTS -->
+<section class="interests-section" id="research">
+  <div class="container">
+    <p class="section-label fade-in">Research Focus</p>
+    <h2 class="section-title fade-in">Core <em>Interests</em></h2>
+    <div class="interests-grid">
+      <div class="interest-card fade-in">
+        <span class="interest-icon">⬡</span>
+        <h3 class="interest-title">2D Materials</h3>
+        <p class="interest-desc">Synthesis and characterization of graphene, MXene (Ti₃C₂Tₓ), and transition metal dichalcogenides (MoS₂, WS₂, WSe₂, MoSe₂). Focus on large-scale growth and structural properties.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <span class="interest-icon">💡</span>
+        <h3 class="interest-title">Optoelectronics</h3>
+        <p class="interest-desc">Layer-dependent bandgap engineering in TMDs, CVD-grown single-crystal films for photodetectors, LEDs, and van der Waals heterostructure solar cells.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <span class="interest-icon">🧲</span>
+        <h3 class="interest-title">Magnetism & Spintronics</h3>
+        <p class="interest-desc">Room-temperature ferromagnetism in MXenes, co-existence of FM/AFM phases, exchange-bias effects, and 2D spintronic device applications.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <span class="interest-icon">⚗️</span>
+        <h3 class="interest-title">Chemical Vapor Deposition</h3>
+        <p class="interest-desc">Powder vaporization, salt-assisted, MOCVD, and atmospheric pressure CVD. Substrate engineering (SiO₂/Si, sapphire, mica, h-BN) for device-grade 2D films.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <span class="interest-icon">🤖</span>
+        <h3 class="interest-title">Machine Learning for Materials</h3>
+        <p class="interest-desc">SVR-based band gap prediction from elemental descriptors (R²=0.981), ML-guided CVD optimization, and integration of data science with materials characterization.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <span class="interest-icon">⚛️</span>
+        <h3 class="interest-title">Quantum Computing</h3>
+        <p class="interest-desc">Variational Quantum Eigensolver (VQE) for band gap prediction of 2D materials. Qiskit programming, quantum circuit design, and IBM quantum framework.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="pubs-section" id="publications">
+  <div class="container">
+    <p class="section-label fade-in">Peer-Reviewed Work</p>
+    <h2 class="section-title fade-in">Selected <em>Publications</em></h2>
+    <div class="pub-list">
+
+      <div class="pub-item fade-in">
+        <div class="pub-year">2025</div>
+        <div class="pub-body">
+          <div class="pub-title">Pronounced scale-dependent charge carrier density in graphene quantum Hall devices</div>
+          <div class="pub-authors">Qandeel Noor et al.</div>
+          <div class="pub-meta">
+            <span class="pub-journal">Materials Today Physics · Vol. 59 · 101928</span>
+            <span class="pub-if">IF 9.7</span>
+          </div>
+        </div>
+        <div class="pub-role"><span class="role-highlight">First Author</span></div>
+      </div>
+
+      <div class="pub-item fade-in">
+        <div class="pub-year">2020</div>
+        <div class="pub-body">
+          <div class="pub-title">Silicon Carbide-Assisted synthesis of two-dimensional MXenes</div>
+          <div class="pub-authors">Qandeel Noor, S. Zahra, M. Serna, C. Abuoudah, M.Z. Iqbal, D. Akinwande, S. Rizwan</div>
+          <div class="pub-meta">
+            <span class="pub-journal">Ceramics International · Vol. 46 · 27419–27425</span>
+            <span class="pub-if">IF 5.6</span>
+          </div>
+        </div>
+        <div class="pub-role"><span class="role-highlight">First Author</span></div>
+      </div>
+
+      <div class="pub-item fade-in">
+        <div class="pub-year">2020</div>
+        <div class="pub-body">
+          <div class="pub-title">Co-existence of magnetic phases in two-dimensional MXene</div>
+          <div class="pub-authors">M. Iqbal, J. Fatheema, Qandeel Noor, M. Rani, M. Mumtaz, R.-K. Zheng, S.A. Khan, S. Rizwan</div>
+          <div class="pub-meta">
+            <span class="pub-journal">Materials Today Chemistry · Vol. 16 · 100271</span>
+            <span class="pub-if">IF 6.7</span>
+          </div>
+        </div>
+        <div class="pub-role">Co-Author</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH PROPOSAL -->
+<section class="proposal-section" id="proposal">
+  <div class="container">
+    <p class="section-label fade-in">Graduate Research Direction</p>
+    <h2 class="section-title fade-in">Research <em>Proposal</em></h2>
+    <div class="proposal-grid">
+      <div>
+        <div class="proposal-visual fade-in">
+          <div class="proposal-visual-bg"></div>
+          <div class="cvd-diagram">
+            <p class="cvd-title">CVD Growth Process</p>
+            <div class="cvd-flow">
+              <div class="cvd-box">
+                <span class="cvd-box-icon">🧪</span>
+                <div class="cvd-box-label">Precursor<br>Input</div>
+              </div>
+              <div class="cvd-arrow">→</div>
+              <div class="cvd-box">
+                <span class="cvd-box-icon">🔥</span>
+                <div class="cvd-box-label">Furnace<br>800–1050°C</div>
+              </div>
+              <div class="cvd-arrow">→</div>
+              <div class="cvd-box">
+                <span class="cvd-box-icon">💎</span>
+                <div class="cvd-box-label">2D Film<br>Deposition</div>
+              </div>
+            </div>
+            <div class="material-chips">
+              <span class="mat-chip">MoS₂</span>
+              <span class="mat-chip">WS₂</span>
+              <span class="mat-chip">WSe₂</span>
+              <span class="mat-chip">MoSe₂</span>
+              <span class="mat-chip">Graphene</span>
+              <span class="mat-chip">h-BN</span>
+              <span class="mat-chip">Sapphire ↗</span>
+              <span class="mat-chip">SiO₂/Si</span>
+              <span class="mat-chip">Mica</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proposal-content fade-in">
+        <p class="proposal-abstract">
+          My proposed research investigates the <em>optoelectronic properties of 2D materials</em> grown via Chemical Vapor Deposition. Unlike mechanical exfoliation, CVD enables large-area, single-crystal TMD films on wafer-scale substrates — bridging the gap between laboratory-scale physics and industrial photonic technology.
+        </p>
+        <ul class="technique-list">
+          <li class="technique-item">Salt-assisted CVD for centimeter-scale single-crystal WS₂ domains (&gt;100 μm)</li>
+          <li class="technique-item">MOCVD reactor scaling for 4-inch wafer uniformity (&lt;5% thickness variation)</li>
+          <li class="technique-item">Prototype broadband photodetectors targeting R &gt; 10³ A/W</li>
+          <li class="technique-item">van der Waals heterostructure LEDs with electroluminescence at 600–800 nm</li>
+          <li class="technique-item">Raman, PL, HRTEM, AFM, XPS, Hall effect, and TRPL characterization suite</li>
+          <li class="technique-item">ML-guided real-time CVD optimization via optical emission spectroscopy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="container">
+    <p class="section-label fade-in">Career</p>
+    <h2 class="section-title fade-in">Research <em>Experience</em></h2>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-period">Jan 2024 – Nov 2025</p>
+        <h3 class="timeline-role">Lab Engineer</h3>
+        <p class="timeline-org">U.S.-Pakistan Centre for Advanced Studies in Energy (USPCAS-E), NUST · Islamabad</p>
+        <ul class="timeline-points">
+          <li>Led research on graphene and MXene-based heterostructures for SWIR sensing in collaboration with Shanghai Institute of Microsystem and Information Technology (under Pakistan Science Foundation)</li>
+          <li>Coordinated interdisciplinary research discussions, technical documentation, and international collaboration alignment</li>
+          <li>Attended 2-Day CPD Workshop on Machine Learning for Energy Systems (Jan 2025)</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-period">Sep 2018 – Jul 2020</p>
+        <h3 class="timeline-role">Research Assistant</h3>
+        <p class="timeline-org">School of Natural Sciences (SNS), NUST · Islamabad</p>
+        <ul class="timeline-points">
+          <li>Optimized synthesis of silicon-based 2D titanium carbide MXenes via HF and HF/H₂O₂ wet chemical etching</li>
+          <li>Studied temperature-dependent magnetic properties using VSM and SQUID magnetometry</li>
+          <li>Analyzed optical and surface characteristics via Raman spectroscopy and XPS</li>
+          <li>Co-authored two Q1-journal publications in Materials Today Chemistry and Ceramics International</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-period">May 2021 – Aug 2022</p>
+        <h3 class="timeline-role">Personal Assistant to Director</h3>
+        <p class="timeline-org">Research, Innovation & Commercialization (RIC), NUST · Islamabad</p>
+        <ul class="timeline-points">
+          <li>Collaborated with the Technology Transfer Office on innovation and commercialization policies</li>
+          <li>Supported the Intellectual Property Office in guiding students through patent filing processes</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <p class="timeline-period">Sep 2020 – Feb 2021</p>
+        <h3 class="timeline-role">Physics Teacher</h3>
+        <p class="timeline-org">Pedagodia School and College System · Islamabad</p>
+        <ul class="timeline-points">
+          <li>Taught intermediate-level (Grades 11–12) Physics; supervised laboratory sessions connecting theory to practice</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <p class="section-label fade-in">Independent Work</p>
+    <h2 class="section-title fade-in">Research <em>Projects</em></h2>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <p class="project-tag">Machine Learning · 2D Materials · 2025–2026</p>
+        <h3 class="project-title">Band Gap Analysis of 2D Materials Using Machine Learning</h3>
+        <p class="project-desc">Built a machine learning pipeline using Support Vector Regression (SVR) to predict band gaps of Ti₃C₂ MXene and WS₂ from elemental descriptors. Predictions were benchmarked against DFT literature values, achieving exceptional accuracy.</p>
+        <div class="project-stats">
+          <span class="stat-chip">SVR · R²=0.981</span>
+          <span class="stat-chip">Ti₃C₂ MXene</span>
+          <span class="stat-chip">WS₂</span>
+          <span class="stat-chip">DFT Validation</span>
+        </div>
+        <a href="https://drive.google.com/file/d/156MpWnvDssDiE2zE5Ave04oD80eKcK6a/view?usp=sharing" target="_blank" class="project-link">View Full Report →</a>
+      </div>
+
+      <div class="project-card fade-in">
+        <p class="project-tag">Quantum Computing · VQE · 2025–2026</p>
+        <h3 class="project-title">Quantum VQE Simulation for 2D Material Band Gap Prediction</h3>
+        <p class="project-desc">Applied Variational Quantum Eigensolver (VQE) to estimate band gaps of Ti₃C₂ MXene (0.00 eV) and WS₂ monolayer (1.98 eV) using 2-qubit Pauli Hamiltonians and COBYLA optimization. Achieved 100% accuracy versus DFT literature.</p>
+        <div class="project-stats">
+          <span class="stat-chip">Qiskit VQE</span>
+          <span class="stat-chip">100% DFT Accuracy</span>
+          <span class="stat-chip">COBYLA Optimizer</span>
+          <span class="stat-chip">Python</span>
+        </div>
+        <a href="https://drive.google.com/file/d/1Xu0FTlk074pfApNBOgNIojTCX1SDb5Xj/view?usp=drive_link" target="_blank" class="project-link">View Full Report →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <p class="section-label fade-in">Technical Expertise</p>
+    <h2 class="section-title fade-in">Skills & <em>Tools</em></h2>
+    <div class="skills-grid">
+      <div class="fade-in">
+        <p class="skill-group-title">Synthesis</p>
+        <div class="skill-item"><span class="skill-name">Chemical Vapor Deposition</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Chemical Etching (HF)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Co-precipitation</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Delamination (TMAOH)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+      </div>
+      <div class="fade-in">
+        <p class="skill-group-title">Characterization</p>
+        <div class="skill-item"><span class="skill-name">Raman Spectroscopy</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">XRD / XPS</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">SQUID / VSM</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">SEM / TEM / AFM</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+      </div>
+      <div class="fade-in">
+        <p class="skill-group-title">Computation</p>
+        <div class="skill-item"><span class="skill-name">Python (NumPy, Pandas)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Scikit-learn / EDA</span><div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Qiskit (Quantum)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">OriginPro 8 / MDI-Jade</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+      </div>
+      <div class="fade-in">
+        <p class="skill-group-title">General</p>
+        <div class="skill-item"><span class="skill-name">Scientific Writing</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">MS Office Suite</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Research Collaboration</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+        <div class="skill-item"><span class="skill-name">International Liaison</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section">
+  <div class="container">
+    <p class="section-label fade-in">Training & Recognition</p>
+    <h2 class="section-title fade-in">Certifications & <em>Awards</em></h2>
+    <div class="certs-grid">
+      <div class="cert-card fade-in">
+        <p class="cert-year">Jul – Sep 2025 · 11 Weeks</p>
+        <h3 class="cert-title">Data Science & Machine Learning</h3>
+        <p class="cert-org">Dice Analytics, Islamabad</p>
+      </div>
+      <div class="cert-card fade-in">
+        <p class="cert-year">Jul – Aug 2025</p>
+        <h3 class="cert-title">Quantum Basics — Level 1 Bootcamp</h3>
+        <p class="cert-org">Qiskit / IBM Quantum Framework</p>
+      </div>
+      <div class="cert-card fade-in">
+        <p class="cert-year">Sep 2025</p>
+        <h3 class="cert-title">National Physics Olympiad — Certificate of Appreciation</h3>
+        <p class="cert-org">Great Future Pakistan</p>
+      </div>
+      <div class="cert-card fade-in">
+        <p class="cert-year">Jan 2025</p>
+        <h3 class="cert-title">CPD Workshop: ML for Energy Systems</h3>
+        <p class="cert-org">USPCAS-E, NUST</p>
+      </div>
+      <div class="cert-card fade-in">
+        <p class="cert-year">Dec 2019</p>
+        <h3 class="cert-title">Poster — China-Pakistan Bilateral Workshop</h3>
+        <p class="cert-org">Ferromagnetic Hybrid Nanostructures, SNS-NUST</p>
+      </div>
+      <div class="cert-card fade-in">
+        <p class="cert-year">Jul 2017</p>
+        <h3 class="cert-title">Poster — Intl. Conference on Nanocomposites</h3>
+        <p class="cert-org">Multifunctional Materials, SNS-NUST</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Qandeel Noor</p>
+  <p class="footer-sub">Physics Researcher · 2D Materials · NUST Islamabad, Pakistan</p>
+  <ul class="footer-links">
+    <li><a href="mailto:qandeelnoor80@gmail.com">qandeelnoor80@gmail.com</a></li>
+    <li><a href="tel:+923400010484">+92 340 001 0484</a></li>
+    <li><a href="#research">Research Interests</a></li>
+    <li><a href="#publications">Publications</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
